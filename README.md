@@ -1,7 +1,16 @@
-This is WDS Hỏi Đáp App
+This is WDS QA App
 
-Before start project, you must build folder dist
-You can yarn run dev or npm run dev to build folder dist at development mode
-Or you can yarn run build or npm run build to build folder dist at production mode
+Để khởi động ứng dụng, trước tiên cần build folder dist
 
-After build folder dist, you can yarn start or npm start to start project
+Có 2 cách build folder dist:
+
+-Build folder dist ở môi trường development: yarn run dev
+
+-Build folder dist ở môi trường production: yarn run build
+
+Sau khi build hoàn tất folder dist ( webpack compiled successfully ), khởi động ứng dụng bằng: yarn start
+
+Ứng dụng chạy ở port 3002
+
+( Có thể dùng tạm npm khi chưa cài đặt yarn, c )
+
