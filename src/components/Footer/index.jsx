@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-Post.propTypes = {
+Footer.propTypes = {
     
 };
 
-function Post(props) {
+function Footer(props) {
     return (
         <div>
             
@@ -13,4 +13,4 @@ function Post(props) {
     );
 }
 
-export default Post;
+export default Footer;

@@ -1,0 +1,31 @@
+header {
+    width: 100%;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: green;
+    position: fixed;
+    box-shadow: 0px 4px rgba(0, 0, 0, .4);
+    &__logo {
+        img {
+            width: 200px;
+            height: 80px;
+        }
+    }
+    &__auth {
+        display:flex;
+        align-items: center;
+        &--btn {
+            margin: 0 12px;
+        }
+    }
+    &__username {
+        font-size: 1.5rem;
+        color: yellow;
+        display: inline;
+    }
+}

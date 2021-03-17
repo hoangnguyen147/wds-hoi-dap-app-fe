@@ -1,9 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry : {
-        bundle: './src/index.js'
+        bundle: ['@babel/polyfill', './src/index.js']
     },
     resolve: {
         extensions: [".js", ".jsx", ".json", ".scss", ".sass"]
@@ -18,7 +19,7 @@ module.exports = {
             {
                 use : 'babel-loader',
                 test : /\.(js|jsx)$/,
-                exclude: '/node_modules/'
+                exclude: '/node_modules/',
             },
             {
                 use : ['style-loader', 'css-loader', 'sass-loader'],
@@ -41,6 +42,7 @@ module.exports = {
         historyApiFallback: true
     },
     plugins : [
-        new HtmlWebpackPlugin({ template: './public/index.html',title: 'Start Webpack'})
+        new HtmlWebpackPlugin({ template: './public/index.html',title: 'Start Webpack'}),
+        new Dotenv()
     ]
 }

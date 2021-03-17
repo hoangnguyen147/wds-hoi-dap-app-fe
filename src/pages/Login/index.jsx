@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+import { userLogin } from "../../redux/actions/user"
 
-const Login = (props) => {
+const Login = ({ user, isLoading, ...props }) => {
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -19,14 +20,21 @@ const Login = (props) => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    props.userLogin(values);
+  }
+
+  if(user) return <Redirect to="/home" />
 
   return (
-    <>
+    <React.Fragment>
       <div className="login">
         <form
           className="login__form"
           autoComplete="off"
           autoSave="off"
+          onSubmit={handleSubmit}
         >
           <h2>Đăng Nhập</h2>
           <div className="login__field">
@@ -53,10 +61,17 @@ const Login = (props) => {
           <button type="submit">Login</button>
         </form>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
+const mapStateToProps = (state) => ({
+  isLoading: state.general.isLoading,
+  user: state.user.user,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  userLogin: (values) => dispatch(userLogin(values)),
+});
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
