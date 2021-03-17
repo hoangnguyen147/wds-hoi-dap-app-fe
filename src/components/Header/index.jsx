@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userLogout } from "../../redux/actions/user"
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
+import logo from '../../../public/image/logo.png'
 
 
 function Header({ user, ...props }) {
@@ -38,7 +38,7 @@ function Header({ user, ...props }) {
                 <Row className="justify-content-between">
                     <Col xs="auto">
                         <a href="#" className="header__logo">
-                            <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="logo" />
+                            <img src={logo} alt="logo" />
                         </a>
                     </Col>
                     <Col className="header__auth" xs="auto">
