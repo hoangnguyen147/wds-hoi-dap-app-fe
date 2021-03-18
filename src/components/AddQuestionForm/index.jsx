@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.scss'
 import { FastField, Form, Formik } from "formik";
 import InputField from '../FormControl/InputField';
 import * as Yup from "yup";

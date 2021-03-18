@@ -6,14 +6,15 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;
-    background-color: green;
+    height: 110px;
+    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
     position: fixed;
     box-shadow: 0px 4px rgba(0, 0, 0, .4);
     z-index: 99;
+    top: 0;
     &__logo {
         img {
-            width: 200px;
+            width: 100px;
             height: 80px;
         }
     }
@@ -23,10 +24,5 @@ header {
         &--btn {
             margin: 0 12px;
         }
-    }
-    &__username {
-        font-size: 1.5rem;
-        color: yellow;
-        display: inline;
     }
 }

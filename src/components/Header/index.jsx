@@ -48,13 +48,13 @@ function Header({ user, ...props }) {
                     <Col className="header__auth" xs="auto">
                         {!user ? (
                             <div>
-                                <Button className="header__auth--btn" onClick={handleOnClickLogin} color="primary" size="lg">Đăng nhập</Button>
+                                <Button className="header__auth--btn" onClick={handleOnClickLogin} color="success" size="lg">Đăng nhập</Button>
                                 <Button className="header__auth--btn" onClick={handleOnClickRegister} color="danger" size="lg">Đăng ký</Button>
                             </div>
                         ) : (
                                 <div>
-                                    <Dropdown direction="end" isOpen={dropdownOpen} toggle={toggle}>
-                                        <DropdownToggle color="primary">
+                                    <Dropdown direction="end" isOpen={dropdownOpen} toggle={toggle} size="lg">
+                                        <DropdownToggle color="success">
                                             {user.name}
                                         </DropdownToggle>
                                         <DropdownMenu>

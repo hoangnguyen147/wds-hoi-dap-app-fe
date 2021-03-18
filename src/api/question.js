@@ -14,3 +14,17 @@ export function getQuestion(category) {
         method: "get",
     })
 }
+
+export function getQuestionById(id) {
+    return callApi({
+        url: `/questions/${id}`,
+        method: "get",
+    })
+}
+
+export function deleteQuestionById(id) {
+    return callApi({
+        url: `/questions/${id}`,
+        method: "delete",
+    })
+}

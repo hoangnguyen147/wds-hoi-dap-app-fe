@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Question from './pages/Question';
 import Register from './pages/Register';
 import { ToastContainer } from "react-toastify"
+import EditQuestion from './pages/EditQuestion';
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
                 </Route>
                 <Route path="/add-question">
                     <AddQuestion />
+                </Route>
+                <Route path="/edit-question/:id">
+                    <EditQuestion />
                 </Route>
             </Switch>
             <ToastContainer

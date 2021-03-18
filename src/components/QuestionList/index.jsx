@@ -6,29 +6,8 @@ import MyPagination from '../Pagination';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import list from '../../category';
 import { getQuestion } from '../../api/question';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { parseTimeShort } from '../../utils/parseTime';
 
-const customNumberPagination = (firstPagiShow) => {
-    return (
-        <React.Fragment>
-            <PaginationItem active={false}>
-                <PaginationLink href="#" onClick={()=> {console.log("a")}} >
-                    {firstPagiShow}
-                </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-                <PaginationLink href="#">
-                    {firstPagiShow+1}
-                </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-                <PaginationLink href="#">
-                    {firstPagiShow+2}
-                </PaginationLink>
-            </PaginationItem>
-        </React.Fragment>
-    )
-}
 
 function QuestionList(props) {
 
@@ -63,14 +42,16 @@ function QuestionList(props) {
             </Dropdown>
             <ul>
                 {listQuestion.length > 0 ? (
-                    listQuestion.map((question, index) => (
+                    listQuestion
+                    .sort((a, b) => a.id > b.id ? -1 : a.id < b.id ? 1 : 0)
+                    .map((question, index) => (
                         <li
                             key={question.id}
                         >
                             <div className="list__question">
                                 <Link to={`question/${question.id}`} >
                                     <div className="list__question-title">{question.title}</div>
-                                    <div className="list__question-user">{question.userId}</div>
+                                    <div className="list__question-time">{"Update lần cuối vào " + parseTimeShort(question.updatedAt)}</div>
                                 </Link>
                             </div>
                         </li>
@@ -79,21 +60,6 @@ function QuestionList(props) {
                         <p>Chưa có dữ liệu</p>
                     )}
             </ul>
-            <Pagination size="lg" aria-label="Page navigation example" className="pagination">
-                <PaginationItem>
-                    <PaginationLink first href="" />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink previous href="#" />
-                </PaginationItem>
-                {customNumberPagination(2)}
-                <PaginationItem>
-                    <PaginationLink next href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink last href="#" />
-                </PaginationItem>
-            </Pagination>
         </div>
     );
 }

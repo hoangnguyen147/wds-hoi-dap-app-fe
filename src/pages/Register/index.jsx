@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
-import {userRegister} from "../../redux/actions/user"
+import { Redirect, useHistory } from "react-router";
+import { userRegister } from "../../redux/actions/user"
 
-const Register = ({user, isLoading, ...props}) => {
+const Register = ({ user, isLoading, ...props }) => {
     const [values, setValues] = useState({
         name: "",
         username: "",
         password: "",
     });
+
+    const history = useHistory();
 
     const handleOnChange = (event) => {
         const target = event.target;
@@ -21,12 +23,12 @@ const Register = ({user, isLoading, ...props}) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         props.userRegister(values);
     }
 
-    if(user) return <Redirect to="/home" />
+    if (user) return <Redirect to="/home" />
 
     return (
         <>
@@ -82,10 +84,10 @@ const Register = ({user, isLoading, ...props}) => {
 const mapStateToProps = (state) => ({
     isLoading: state.general.isLoading,
     user: state.user.user,
-  });
-  
-  const mapDispatchToProps = (dispatch) => ({
+});
+
+const mapDispatchToProps = (dispatch) => ({
     userRegister: (values) => dispatch(userRegister(values)),
-  });
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Register);
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

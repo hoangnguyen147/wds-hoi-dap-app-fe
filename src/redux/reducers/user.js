@@ -19,7 +19,7 @@ const userReducer = handleActions(
           }
         },
         [actions.REGISTER_SUCCESS]: (state, action) => {
-          const data = action.payload;
+          localStorage.setItem("user", JSON.stringify(action.payload));
           return {
             ...state,
             user: action.payload

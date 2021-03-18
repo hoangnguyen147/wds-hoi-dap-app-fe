@@ -13,7 +13,6 @@ export const userLogin = (data) => {
         try {
             const res = await api.userLogin(data);
             dispatch(userLoginSuccess(res));
-            console.log("res ",res)
         } catch (err) {
             console.log(err);
         }

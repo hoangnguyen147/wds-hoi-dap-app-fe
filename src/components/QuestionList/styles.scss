@@ -27,8 +27,10 @@
             font-weight: 500;
             font-size: 1.3rem;
         }
-        &-user {
-            font: italic;
+        &-time {
+            font-style: italic;
+            font-size: 0.88rem;
+            font-weight: 320;
         }
     }
     &__dropdown {
