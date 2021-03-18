@@ -28,3 +28,11 @@ export function deleteQuestionById(id) {
         method: "delete",
     })
 }
+
+export function updateQuestionById(id, data) {
+    return callApi({
+        url: `/questions/${id}`,
+        method: "patch",
+        data: data,
+    })
+}

@@ -1,6 +1,6 @@
 This is WDS QA App
 
-Để khởi động ứng dụng, trước tiên cần build folder dist
+Để khởi động ứng dụng, trước tiên cần chạy câu lệnh yarn start để tải các gói package, sau đó build folder dist
 
 Có 2 cách build folder dist:
 

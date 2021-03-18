@@ -5,9 +5,10 @@ import * as Yup from "yup";
 import { Container, Button } from "reactstrap";
 import CategoryField from '../FormControl/CategoryField';
 import list from '../../category';
-import { addQuestion, getQuestionById } from '../../api/question';
+import { addQuestion, getQuestionById, updateQuestionById } from '../../api/question';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from 'react-router-dom';
 
 
 const validationSchema = Yup.object().shape({
@@ -21,7 +22,8 @@ const validationSchema = Yup.object().shape({
 
 function EditQuestinForm({ questionId, ...props }) {
 
-    const [initialValues, setInitialValues] = useState()
+    const [initialValues, setInitialValues] = useState();
+    const history = useHistory();
 
     useEffect(() => {
         async function getContentQuestion(id) {
@@ -42,9 +44,9 @@ function EditQuestinForm({ questionId, ...props }) {
     const onSubmit = async (values, submitProps) => {
         console.log(values);
         submitProps.setSubmitting(true);
-        await addQuestion(values)
+        await updateQuestionById(questionId, values)
             .then(() => {
-                toast.success("Đặt câu hỏi thành công", {
+                toast.success("Sửa câu hỏi thành công", {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -55,7 +57,7 @@ function EditQuestinForm({ questionId, ...props }) {
                 });
             })
             .catch(() => {
-                toast.error("Đặt câu hỏi thất bại", {
+                toast.error("Sửa câu hỏi thất bại", {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -66,7 +68,7 @@ function EditQuestinForm({ questionId, ...props }) {
                 });
             });
         submitProps.setSubmitting(false);
-        submitProps.resetForm();
+        history.push("/home");
     }
 
     if (!initialValues) {
