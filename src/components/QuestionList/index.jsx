@@ -1,85 +1,76 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss'
 import { Link } from 'react-router-dom';
 import MyPagination from '../Pagination';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import list from '../../category';
+import { getQuestion } from '../../api/question';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-QuestionList.propTypes = {
-    data: PropTypes.array,
-};
-
-QuestionList.defaultProps = {
-    data: [
-        {
-            id: 1,
-            title: "cau hoi 1"
-        },
-        {
-            id: 2,
-            title: "cau hoi 2"
-        },
-        {
-            id: 3,
-            title: "cau hoi 3"
-        },
-        {
-            id: 4,
-            title: "cau hoi 4"
-        },
-        {
-            id: 5,
-            title: "cau hoi 1"
-        },
-        {
-            id: 6,
-            title: "cau hoi 2"
-        },
-        {
-            id: 7,
-            title: "cau hoi 3"
-        },
-        {
-            id: 8,
-            title: "cau hoi 4"
-        },
-        {
-            id: 9,
-            title: "cau hoi 1"
-        },
-        {
-            id: 10,
-            title: "cau hoi 2"
-        },
-        {
-            id: 11,
-            title: "cau hoi 3"
-        },
-        {
-            id: 12,
-            title: "cau hoi 4"
-        },
-    ],
+const customNumberPagination = (firstPagiShow) => {
+    return (
+        <React.Fragment>
+            <PaginationItem active={false}>
+                <PaginationLink href="#" onClick={()=> {console.log("a")}} >
+                    {firstPagiShow}
+                </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+                <PaginationLink href="#">
+                    {firstPagiShow+1}
+                </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+                <PaginationLink href="#">
+                    {firstPagiShow+2}
+                </PaginationLink>
+            </PaginationItem>
+        </React.Fragment>
+    )
 }
 
-const handleOnclick = () => {
+function QuestionList(props) {
 
-}
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [category, setCategory] = useState("");
+    const [listQuestion, setListQuestion] = useState([]);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
 
 
-function QuestionList({ data, ...props }) {
-    console.log(data)
+    useEffect(() => {
+        async function getQuestionList(category) {
+            const res = await getQuestion(category);
+            console.log(res);
+            setListQuestion(res);
+        };
+        getQuestionList(category)
+    }, [category]);
+
     return (
         <div className="list">
+            <Dropdown isOpen={dropdownOpen} toggle={toggle} className="list__dropdown" size="lg">
+                <DropdownToggle className="list__dropdown-item">
+                    {category || "Tất cả"}
+                </DropdownToggle>
+                <DropdownMenu container="body">
+                    <DropdownItem onClick={() => setCategory("")} className="list__dropdown-item" >All</DropdownItem>
+                    {list.map((item) => (
+                        <DropdownItem onClick={() => setCategory(item)} className="list__dropdown-item" >{item}</DropdownItem>
+                    ))}
+                </DropdownMenu>
+            </Dropdown>
             <ul>
-                {data.length > 0 ? (
-                    data.map((question, index) => (
+                {listQuestion.length > 0 ? (
+                    listQuestion.map((question, index) => (
                         <li
                             key={question.id}
-                            onClick={handleOnclick}
                         >
                             <div className="list__question">
-                                <Link to={`question/${question.id}`}>
-                                    <li>{question.title}</li>
+                                <Link to={`question/${question.id}`} >
+                                    <div className="list__question-title">{question.title}</div>
+                                    <div className="list__question-user">{question.userId}</div>
                                 </Link>
                             </div>
                         </li>
@@ -88,7 +79,21 @@ function QuestionList({ data, ...props }) {
                         <p>Chưa có dữ liệu</p>
                     )}
             </ul>
-            <MyPagination firstPagiShow={6} />
+            <Pagination size="lg" aria-label="Page navigation example" className="pagination">
+                <PaginationItem>
+                    <PaginationLink first href="" />
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationLink previous href="#" />
+                </PaginationItem>
+                {customNumberPagination(2)}
+                <PaginationItem>
+                    <PaginationLink next href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationLink last href="#" />
+                </PaginationItem>
+            </Pagination>
         </div>
     );
 }

@@ -12,5 +12,5 @@ Sau khi build hoàn tất folder dist ( webpack compiled successfully ), khởi 
 
 Ứng dụng chạy ở port 3002
 
-( Có thể dùng tạm npm khi chưa cài đặt yarn, có thể dùng tạm npm )
+( Có thể dùng tạm npm khi chưa cài đặt yarn )
 

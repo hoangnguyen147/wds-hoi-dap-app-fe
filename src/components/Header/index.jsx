@@ -27,6 +27,10 @@ function Header({ user, ...props }) {
         history.push("/add-question");
     }
 
+    const handleOnClickGoHome = () => {
+        history.push("/home");
+    }
+
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -55,6 +59,7 @@ function Header({ user, ...props }) {
                                         </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem header>Cá nhân</DropdownItem>
+                                            <DropdownItem onClick={handleOnClickGoHome}>Trang chủ</DropdownItem>
                                             <DropdownItem onClick={handleOnClickAddQuestion}>Đặt câu hỏi</DropdownItem>
                                             <DropdownItem divider />
                                             <DropdownItem onClick={handleOnClickLogout}>Đăng xuất</DropdownItem>

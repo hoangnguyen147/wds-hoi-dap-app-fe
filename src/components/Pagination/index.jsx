@@ -6,7 +6,7 @@ const customNumberPagination = (firstPagiShow) => {
     return (
         <React.Fragment>
             <PaginationItem>
-                <PaginationLink href="#">
+                <PaginationLink href="#" onClick={()=> {console.log("a")}} >
                     {firstPagiShow}
                 </PaginationLink>
             </PaginationItem>

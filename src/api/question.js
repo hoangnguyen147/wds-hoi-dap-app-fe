@@ -7,3 +7,10 @@ export function addQuestion(data) {
         data: data,
     })
 }
+
+export function getQuestion(category) {
+    return callApi({
+        url: `/questions?category=${category}`,
+        method: "get",
+    })
+}

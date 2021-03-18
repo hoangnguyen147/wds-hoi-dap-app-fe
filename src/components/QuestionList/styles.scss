@@ -4,19 +4,15 @@
     align-items: center;
     background-color: #f5f5f5;
     flex-direction: column;
-    padding-top: 170px;
     &__question {
-        height: 60px;
-        width: 100%;
         margin-bottom: 20px;
         width: 500px;
         a:link,
         a:visited {
             background-color: white;
             color: black;
-            border: 2px solid green;
-            padding: 10px 20px;
-            text-align: center;
+            border: 2px solid dodgerblue;
+            padding: 5px 20px;
             text-decoration: none;
             display: inline-block;
             width: 100%;
@@ -24,8 +20,20 @@
         }
         a:hover,
         a:active {
-            background-color: green;
+            background-color: dodgerblue;
             color: white;
         }
+        &-title {
+            font-weight: 500;
+            font-size: 1.3rem;
+        }
+        &-user {
+            font: italic;
+        }
+    }
+    &__dropdown {
+        margin-top: 160px;
+        margin-bottom: 50px;
+        width: 840px;
     }
 }
