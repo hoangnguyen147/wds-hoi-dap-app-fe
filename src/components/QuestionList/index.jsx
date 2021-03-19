@@ -43,7 +43,7 @@ function QuestionList(props) {
             <ul>
                 {listQuestion.length > 0 ? (
                     listQuestion
-                    .sort((a, b) => a.id > b.id ? -1 : a.id < b.id ? 1 : 0)
+                    .sort((a, b) => a.updatedAt > b.updatedAt ? -1 : a.updatedAt < b.updatedAt ? 1 : 0)
                     .map((question, index) => (
                         <li
                             key={question.id}
